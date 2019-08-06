@@ -1,0 +1,725 @@
+: Saved
+: Written by admin at 17:49:28.896 GMT/BDT Mon Jun 10 2019
+!
+ASA Version 8.2(1) 
+!
+hostname MNK-PORTAL-ASA1
+domain-name lanarkshire.scot.nhs.uk
+enable password pFGgiRb1UvGijZ0t encrypted
+passwd 2KFQnbNIdI.2KYOU encrypted
+names
+name 10.242.151.66 MNK-PORTAL-ASA1-DMZ
+name 10.242.151.68 MNK-PORTAL-RTR1-NAT
+name 10.242.151.69 MNK-PORTAL-CAT1-NAT
+name 10.242.151.33 MNK-PORTAL-FP1-OUTSIDE
+name 10.242.151.35 MNK-PORTAL-CAT2
+name 158.152.1.76 NTP.DEMON.CO.UK
+name 10.242.151.65 MNK-PORTAL-PIX2-DMZ
+name 10.242.151.128 it_support
+name 194.70.71.94 CWD-CONNECT.NHSLANARKSHIRE.COM
+name 194.70.71.65 CWD-MNK-PORTAL-ASA1-OUTSIDE
+name 194.70.71.66 CWD-MNK-PORTAL-RTR1-PUB
+name 194.70.71.67 CWD-MNK-PORTAL-CAT1-PUB
+name 194.70.71.68 CWD-MNK-PORTAL-ASA1-OUTSIDE-STANDBY
+name 194.168.135.254 CONNECT.NHSLANARKSHIRE.COM
+name 194.168.135.226 MNK-PORTAL-ASA1-OUTSIDE
+name 194.168.135.225 MNK-PORTAL-RTR1-PUB
+name 194.168.135.227 MNK-PORTAL-ASA1-OUTSIDE-STANDBY
+name 194.168.135.230 MDM-NHSL-LANARKSHIRE-SCOT-NHS-UK
+name 10.242.151.39 MDM-NHSL-LANARKSHIRE-SCOT-NHS-UK-PRI
+name 194.168.135.231 MDM-MAG-LANARKSHIRE-SCOT-NHS-UK
+name 10.242.151.40 MDM-MAG-LANARKSHIRE-SCOT-NHS-UK-PRI
+name 194.168.135.253 REMOTE.NHSLANARKSHIRE.COM
+name 194.168.135.252 ACTIVESYNC.NHSLANARKSHIRE.COM
+name 10.242.151.41 VirtualWeb-REMOTE.NHSLANARKSHIRE.COM
+name 10.242.151.42 VirtualWeb-ACTIVESYNC.NHSLANARKSHIRE.COM
+name 10.242.151.43 MNK-PORTAL-APM-PRIMARY-OUTSIDE
+name 10.242.151.44 MNK-PORTAL-APM-SECONDARY-OUTSIDE
+name 194.168.135.240 SCOPIA.NHSL.LANARKSHIRE.SCOT.NHS.UK
+name 10.242.151.46 SCOPIA.NHSL.LANARKSHIRE.SCOT.NHS.UK.PRIVATE
+name 194.168.135.241 VIDEO.NHSL.LANARKSHIRE.SCOT.NHS.UK
+name 10.242.151.47 VIDEO.NHSL.LANARKSHIRE.SCOT.NHS.UK.PRIVATE
+name 194.168.135.242 EDUROAM.NHSL.LANARKSHIRE.SCOT.NHS.UK
+name 10.242.151.56 EDUROAM.NHSL.LANARKSHIRE.SCOT.NHS.UK.PRIVATE
+name 194.82.174.185 roaming0.ja.net description Eduroam JISC server 0
+name 194.83.56.233 roaming1.ja.net description Eduroam JISC server 1
+name 194.83.56.249 roaming2.ja.net description Eduroam JISC server 2
+name 193.60.199.62 support.eduroam.uk description Eduroam JISC Support Server
+name 10.250.168.105 SecurEnvoy-Inside description SecurEnvoy-Inside going out
+name 194.168.135.244 SecurEnvoy-Outside description SecurEnvoy-Outside-Ext IP
+name 10.0.44.0 VPN-KironaEnd description Kirona VPN end
+name 10.242.189.129 VSV-363 description For Kirona VPN
+name 10.242.189.130 VSV-364 description For Kirona VPN
+name 10.242.189.147 VSV-365 description For Kirona VPN
+name 194.168.135.243 F5-GPSRA-Outside-EXT description F5 GPSRA Interface
+name 10.242.151.57 F5GPSRA-Outside description F5 Testing Interface Outside
+name 10.22.0.0 WLAN-MNK description MNK-WLAN
+name 10.27.0.0 WLAN-HM description HM-WLAN
+name 10.242.151.50 SKYPE01-AV-Outside-Pri description Skype for business Node1 AV outside interface
+name 10.242.151.48 SKYPE01-Access-Outside-Pri description Skype for business Node 1 Access Outside Interface
+name 10.242.151.51 SKYPE01-ReverseProxy-Outside-Pri description Skype for business Node 1 Reverse Proxy outside interface
+name 10.242.151.49 SKYPE01-WEB-Outside-Pri description Skype for business Node 1 Web Outside Interface
+name 10.242.151.52 SKYPE02-Access-Outside-Pri description Skype for business Node 2 Access outside interface
+name 10.242.151.53 SKYPE02-Web-Outside-Pri description Skype for business Node 2 Web Outside interface
+name 10.242.151.54 SKYPE02-AV-Outside-Pri description Skype for business Node 2 AV outside interface
+name 194.168.135.234 SKYPE01-AV-Outside-EXT description Skype for business Node 1 AV EXT IP
+name 194.168.135.232 SKYPE01-Access-Outside-EXT description Skype for business Node 1 Access EXT IP
+name 194.168.135.233 SKYPE01-WEB-Outside-EXT description Skype for business Node 1 WEB EXT IP
+name 194.168.135.238 SKYPE02-AV-Outside-EXT description Skype for business Node 2 AV EXT IP
+name 194.168.135.236 SKYPE02-Access-Outside-EXT description Skype for business Node 2 Access EXT IP
+name 194.168.135.237 SKYPE02-WEB-Outside-EXT description Skype for business Node 2 WEB EXT IP
+name 194.168.135.235 SKYPE01-ReverseProxy-Outside-EXT description Skype for business Node 2 Reverse Proxy EXT IP
+name 194.168.135.239 Skype02-ReverseProxy-Outside-EXT description Skype for business Node 2 Reverse Proxy EXT IP
+name 10.242.151.55 SKYPE02-ReverseProxy-Outside-Pri description Skype for business Node 2 Reverse Proxy outside interface
+name 194.168.135.245 SMSCOMMS.NHSL.LANARKSHIRE.SCOT.NHS.UK
+name 10.242.151.59 SMSCOMMS.NHSL.LANARKSHIRE.SCOT.NHS.UK.PRIVATE
+name 194.168.135.251 nhsl-adfs.NHSL.LANARKSHIRE.SCOT.NHS.UK
+name 10.242.151.60 nhsl-adfs.NHSL.LANARKSHIRE.SCOT.NHS.UK.PRIVATE
+name 194.168.135.246 SKYPE_NEW
+name 10.242.151.61 SKYPE_NEW.PRIVATE
+!
+interface Ethernet0/0
+ description link to MNK-PORTAL-CAT1 fa 0/2
+ speed 1000
+ duplex full
+ nameif outside
+ security-level 0
+ ip address MNK-PORTAL-ASA1-OUTSIDE 255.255.255.224 standby MNK-PORTAL-ASA1-OUTSIDE-STANDBY 
+!
+interface Ethernet0/1
+ description link to MNK-PORTAL-CAT2 fa0/2
+ speed 1000
+ duplex full
+ nameif inside
+ security-level 100
+ ip address 10.242.151.34 255.255.255.224 standby 10.242.151.38 
+!
+interface Ethernet0/2
+ description LAN/STATE Failover Interface
+!
+interface Ethernet0/3
+ speed 100
+ duplex full
+ nameif wireless-guest
+ security-level 2
+ ip address 192.169.240.1 255.255.240.0 standby 192.169.240.2 
+!
+interface Management0/0
+ description link to MNK-PORTAL-CAT4 fa0/1
+ speed 100
+ duplex full
+ nameif dmz1
+ security-level 50
+ ip address MNK-PORTAL-ASA1-DMZ 255.255.255.224 standby 10.242.151.72 
+!
+banner login ***********************************************************
+banner login *                                                         *
+banner login *             This device is the property of              *
+banner login *                                                         *
+banner login *                     NHS Lanarkshire                     *
+banner login *                                                         *
+banner login *     Access is strictly limited to IT Support staff      *
+banner login *                                                         *
+banner login ***********************************************************
+banner login *              UNAUTHORIZED ACCESS PROHIBITED             *
+banner login ***********************************************************
+ftp mode passive
+clock timezone GMT/BST 0
+clock summer-time GMT/BDT recurring last Sun Mar 1:00 last Sun Oct 2:00
+dns server-group DefaultDNS
+ domain-name lanarkshire.scot.nhs.uk
+object-group network it_mgmt_nets
+ description internal it management networks
+ network-object 10.242.0.0 255.255.0.0
+ network-object host 10.21.3.212
+ network-object 10.21.0.0 255.255.0.0
+object-group network syslog_server
+ description internal syslog servers
+ network-object host 10.21.3.212
+object-group network portal_managed_devices
+ description managed portal devices
+ network-object host MNK-PORTAL-RTR1-NAT
+ network-object host MNK-PORTAL-CAT1-NAT
+ network-object host MNK-PORTAL-CAT2
+object-group network public_side_man_dev
+ description managed portal devices
+ network-object host MNK-PORTAL-RTR1-NAT
+ network-object host MNK-PORTAL-CAT1-NAT
+object-group icmp-type icmp_diags
+ icmp-object echo
+ icmp-object traceroute
+object-group icmp-type ping_reply
+ icmp-object echo-reply
+ icmp-object time-exceeded
+ icmp-object unreachable
+object-group network clam_antivirus
+ description external antivirus database
+ network-object host 62.26.160.3
+object-group service tcp_mgmt tcp
+ description tcp protocols used for management
+ port-object eq telnet
+ port-object eq ssh
+object-group network public_side_man_dev_real
+ description managed portal devices
+ network-object CWD-MNK-PORTAL-RTR1-PUB 255.255.255.255
+ network-object CWD-MNK-PORTAL-CAT1-PUB 255.255.255.255
+ network-object MNK-PORTAL-RTR1-PUB 255.255.255.255
+object-group network DM_INLINE_NETWORK_1
+ network-object host MNK-PORTAL-FP1-OUTSIDE
+ network-object host 10.242.151.36
+ network-object host 10.242.151.37
+ network-object host MNK-PORTAL-APM-PRIMARY-OUTSIDE
+ network-object host MNK-PORTAL-APM-SECONDARY-OUTSIDE
+object-group network Eduroam_JISC_EXT
+ description JISC EDUROAM Servers
+ network-object host support.eduroam.uk
+ network-object host roaming0.ja.net
+ network-object host roaming1.ja.net
+ network-object host roaming2.ja.net
+object-group network Remote-Network
+ network-object 192.178.1.0 255.255.255.0
+object-group network Local-To-VPN
+ network-object 10.242.0.0 255.255.0.0
+object-group network Kirona-VPN-NHSLSide
+ description VPN-Kirona-NHSL hosts
+ network-object host VSV-363
+ network-object host VSV-364
+ network-object host VSV-365
+object-group service DM_INLINE_SERVICE_1
+ service-object ip 
+ service-object tcp eq ftp 
+ service-object tcp eq ftp-data 
+ service-object icmp echo
+ service-object icmp echo-reply
+object-group service RDP tcp
+ description RDP 3389
+ port-object eq 3389
+object-group service DM_INLINE_TCP_1 tcp
+ group-object RDP
+ port-object eq ftp
+ port-object eq ftp-data
+ port-object eq www
+ port-object eq https
+object-group icmp-type DM_INLINE_ICMP_1
+ group-object icmp_diags
+ group-object ping_reply
+object-group service DM_INLINE_TCP_2 tcp
+ group-object RDP
+ port-object eq ftp
+ port-object eq ftp-data
+ port-object eq www
+ port-object eq https
+object-group service DM_INLINE_SERVICE_2
+ service-object tcp eq 5061 
+ service-object tcp eq 5269 
+ service-object tcp eq www 
+ service-object udp eq domain 
+ service-object tcp eq https 
+object-group service DM_INLINE_SERVICE_3
+ service-object tcp eq 5061 
+ service-object tcp eq 5269 
+ service-object tcp eq www 
+ service-object udp eq domain 
+ service-object tcp eq https 
+object-group service DM_INLINE_SERVICE_4
+ service-object tcp range 50000 59999 
+ service-object udp eq 3478 
+ service-object udp range 50000 59999 
+object-group service DM_INLINE_SERVICE_5
+ service-object tcp range 50000 59999 
+ service-object udp eq 3478 
+ service-object udp range 50000 59999 
+object-group service DM_INLINE_TCP_3 tcp
+ port-object eq 5061
+ port-object eq https
+object-group service DM_INLINE_TCP_4 tcp
+ port-object eq 5061
+ port-object eq https
+object-group service DM_INLINE_SERVICE_6
+ service-object tcp range 50000 59999 
+ service-object tcp eq https 
+ service-object udp eq 3478 
+ service-object udp range 50000 59999 
+object-group service DM_INLINE_SERVICE_7
+ service-object tcp range 50000 59999 
+ service-object tcp eq https 
+ service-object udp eq 3478 
+ service-object udp range 50000 59999 
+object-group service DM_INLINE_TCP_5 tcp
+ port-object eq www
+ port-object eq https
+object-group service DM_INLINE_TCP_6 tcp
+ port-object eq www
+ port-object eq https
+object-group network EE_SMS_Senders
+ description EE SMS Sender Servers
+ network-object host 162.13.243.132
+ network-object host 162.13.243.135
+ network-object host 46.38.182.45
+ network-object host 46.38.182.113
+ network-object host 46.38.182.46
+ network-object host 46.38.182.114
+access-list nat_hide_src extended permit ip object-group it_mgmt_nets object-group public_side_man_dev 
+access-list from_outside remark Allow external clients inbound access to ADFS proxy server nhsl-adfs on port 443
+access-list from_outside remark Allow SWAN clients inbound access to ADFS proxy server nhsl-adfs on port 443 for TESTING
+access-list from_outside extended permit tcp any host nhsl-adfs.NHSL.LANARKSHIRE.SCOT.NHS.UK eq https 
+access-list from_outside extended permit tcp 185.58.164.40 255.255.255.248 host nhsl-adfs.NHSL.LANARKSHIRE.SCOT.NHS.UK eq https 
+access-list from_outside remark Monitor attempts of inbound access to ADFS proxy server nhsl-adfs
+access-list from_outside extended deny tcp any host nhsl-adfs.NHSL.LANARKSHIRE.SCOT.NHS.UK 
+access-list from_outside extended permit tcp any host CWD-CONNECT.NHSLANARKSHIRE.COM eq https 
+access-list from_outside extended permit tcp any host MDM-NHSL-LANARKSHIRE-SCOT-NHS-UK eq https 
+access-list from_outside extended permit tcp any host REMOTE.NHSLANARKSHIRE.COM eq https 
+access-list from_outside extended permit tcp any host ACTIVESYNC.NHSLANARKSHIRE.COM eq https 
+access-list from_outside remark Allow External Inbound UDP from JISC
+access-list from_outside extended permit udp object-group Eduroam_JISC_EXT host EDUROAM.NHSL.LANARKSHIRE.SCOT.NHS.UK eq 1812 
+access-list from_outside remark Allow External Inbound ICMP from JISC
+access-list from_outside extended permit icmp object-group Eduroam_JISC_EXT host EDUROAM.NHSL.LANARKSHIRE.SCOT.NHS.UK 
+access-list from_outside remark Allow External KHIPU Inbound SSH
+access-list from_outside extended deny tcp host 77.241.180.228 host EDUROAM.NHSL.LANARKSHIRE.SCOT.NHS.UK eq ssh 
+access-list from_outside remark Allow External Inbound SSH
+access-list from_outside extended deny tcp any host EDUROAM.NHSL.LANARKSHIRE.SCOT.NHS.UK eq ssh 
+access-list from_outside remark Allow External Inbound IP
+access-list from_outside extended deny ip any host EDUROAM.NHSL.LANARKSHIRE.SCOT.NHS.UK 
+access-list from_outside remark Allow External Inbound to F5 GP SRA
+access-list from_outside extended permit tcp any host F5-GPSRA-Outside-EXT eq https 
+access-list from_outside remark Kirona Inbound VPN Access to NHSL HOSTS
+access-list from_outside extended permit tcp VPN-KironaEnd 255.255.255.0 object-group Kirona-VPN-NHSLSide object-group DM_INLINE_TCP_2 
+access-list from_outside remark Allow inbound access to KironaMobile wrongly labelled as SecurEnvoy-Outside
+access-list from_outside extended permit tcp any host SecurEnvoy-Outside eq https 
+access-list from_outside remark Skype for business Node 1 Access Incomming
+access-list from_outside extended permit tcp any host SKYPE01-Access-Outside-EXT object-group DM_INLINE_TCP_3 
+access-list from_outside remark Skype for business Node 1 WEB Incomming
+access-list from_outside extended permit tcp any host SKYPE01-WEB-Outside-EXT eq https 
+access-list from_outside remark Skype for business Node 1 AV Incomming
+access-list from_outside extended permit object-group DM_INLINE_SERVICE_6 any host SKYPE01-AV-Outside-EXT 
+access-list from_outside remark Skype for business Node 2 Access Incomming
+access-list from_outside extended permit tcp any host SKYPE02-Access-Outside-EXT object-group DM_INLINE_TCP_4 
+access-list from_outside remark Skype for business Node 2 WEB Incomming
+access-list from_outside extended permit tcp any host SKYPE02-WEB-Outside-EXT eq https 
+access-list from_outside remark Skype for business Node 2 AV Incomming
+access-list from_outside extended permit object-group DM_INLINE_SERVICE_7 any host SKYPE02-AV-Outside-EXT 
+access-list from_outside remark Skype for business Node 1 Reverse Proxy Incomming
+access-list from_outside extended permit tcp any host SKYPE01-ReverseProxy-Outside-EXT object-group DM_INLINE_TCP_5 
+access-list from_outside remark Skype for business Node 2 Reverse Proxy Incomming
+access-list from_outside extended permit tcp any host Skype02-ReverseProxy-Outside-EXT object-group DM_INLINE_TCP_6 
+access-list from_outside remark Inbound SMS Responses to Appointment Reminders
+access-list from_outside extended permit tcp object-group EE_SMS_Senders host SMSCOMMS.NHSL.LANARKSHIRE.SCOT.NHS.UK eq https 
+access-list from_outside remark Inbound SMS Responses to Appointment Reminders - Full Proxy Testing access to web server on https
+access-list from_outside extended permit tcp host 81.187.86.52 host SMSCOMMS.NHSL.LANARKSHIRE.SCOT.NHS.UK eq https 
+access-list from_outside remark Inbound SMS Responses to Appointment Reminders - BT EE Testing access to web server on https
+access-list from_outside extended permit tcp host 80.25.150.123 host SMSCOMMS.NHSL.LANARKSHIRE.SCOT.NHS.UK eq https 
+access-list from_outside extended deny tcp any host SMSCOMMS.NHSL.LANARKSHIRE.SCOT.NHS.UK eq https 
+access-list from_outside extended permit tcp any host CONNECT.NHSLANARKSHIRE.COM eq https 
+access-list from_outside extended permit tcp any host SKYPE_NEW eq https 
+access-list from_inside remark Monitor outbound access from ADFS proxy server nhsl-adfs on port 443
+access-list from_inside extended permit tcp host nhsl-adfs.NHSL.LANARKSHIRE.SCOT.NHS.UK any eq https 
+access-list from_inside extended permit tcp host nhsl-adfs.NHSL.LANARKSHIRE.SCOT.NHS.UK.PRIVATE any eq https 
+access-list from_inside extended permit ip object-group DM_INLINE_NETWORK_1 any 
+access-list from_inside extended permit udp host MNK-PORTAL-CAT2 object-group syslog_server eq syslog 
+access-list from_inside extended permit icmp host MNK-PORTAL-CAT2 object-group it_mgmt_nets object-group icmp_diags 
+access-list from_inside extended permit icmp host MNK-PORTAL-CAT2 object-group it_mgmt_nets object-group ping_reply 
+access-list from_inside extended permit tcp host MDM-NHSL-LANARKSHIRE-SCOT-NHS-UK-PRI any eq www 
+access-list from_inside extended permit tcp host MDM-NHSL-LANARKSHIRE-SCOT-NHS-UK-PRI any eq https 
+access-list from_inside extended permit tcp host MDM-NHSL-LANARKSHIRE-SCOT-NHS-UK-PRI 17.0.0.0 255.0.0.0 eq 2195 
+access-list from_inside extended permit tcp host MDM-NHSL-LANARKSHIRE-SCOT-NHS-UK-PRI 17.0.0.0 255.0.0.0 eq 2196 
+access-list from_inside extended permit tcp host MDM-NHSL-LANARKSHIRE-SCOT-NHS-UK-PRI 17.0.0.0 255.0.0.0 eq 5223 
+access-list from_inside extended permit tcp host MDM-NHSL-LANARKSHIRE-SCOT-NHS-UK-PRI any eq 5228 
+access-list from_inside extended permit tcp host MDM-NHSL-LANARKSHIRE-SCOT-NHS-UK-PRI any eq 5229 
+access-list from_inside extended permit tcp host MDM-NHSL-LANARKSHIRE-SCOT-NHS-UK-PRI any eq 5230 
+access-list from_inside remark allow Airwatch appliance access to ftp.airwatchportals.com using ftp
+access-list from_inside remark allow Airwatch appliance access to ftp.airwatchportals.com using ftp
+access-list from_inside extended permit tcp host MDM-NHSL-LANARKSHIRE-SCOT-NHS-UK-PRI host 205.139.50.150 eq ftp 
+access-list from_inside extended permit tcp host MDM-MAG-LANARKSHIRE-SCOT-NHS-UK-PRI any eq www 
+access-list from_inside remark allow Airwatch appliance access to ftp.airwatchportals.com using ftp
+access-list from_inside extended permit tcp host MDM-MAG-LANARKSHIRE-SCOT-NHS-UK-PRI any eq https 
+access-list from_inside remark allow Airwatch appliance access to ntp on time1.google.com and time2.google.com
+access-list from_inside remark allow Airwatch appliance access to ftp.airwatchportals.com using ftp
+access-list from_inside extended permit tcp host MDM-MAG-LANARKSHIRE-SCOT-NHS-UK-PRI host 205.139.50.150 eq ftp 
+access-list from_inside remark end of allow Airwatch appliance access to ntp on time1.google.com and time2.google.com
+access-list from_inside remark allow Airwatch appliance access to ntp on time1.google.com and time2.google.com
+access-list from_inside extended permit udp any host 216.239.32.15 eq ntp 
+access-list from_inside remark end of allow Airwatch appliance access to ntp on time1.google.com and time2.google.com
+access-list from_inside extended permit udp any host 216.239.34.15 eq ntp 
+access-list from_inside remark Allow Eduroam Outbound PING to JISC Servers
+access-list from_inside extended permit icmp host EDUROAM.NHSL.LANARKSHIRE.SCOT.NHS.UK.PRIVATE object-group Eduroam_JISC_EXT 
+access-list from_inside remark Allow Eduroam Outbound UDP to JISC servers
+access-list from_inside extended permit udp host EDUROAM.NHSL.LANARKSHIRE.SCOT.NHS.UK.PRIVATE object-group Eduroam_JISC_EXT eq 1812 
+access-list from_inside remark Allow Eduroam Outbound
+access-list from_inside extended deny ip host EDUROAM.NHSL.LANARKSHIRE.SCOT.NHS.UK.PRIVATE any 
+access-list from_inside remark Skype for business Node 1 Access going out
+access-list from_inside extended permit object-group DM_INLINE_SERVICE_2 host SKYPE01-Access-Outside-Pri any 
+access-list from_inside remark Skype for business Node 1 AV going out
+access-list from_inside extended permit object-group DM_INLINE_SERVICE_4 host SKYPE01-AV-Outside-Pri any 
+access-list from_inside remark Skype for business Node 2 Access going out
+access-list from_inside extended permit object-group DM_INLINE_SERVICE_3 host SKYPE02-Access-Outside-Pri any 
+access-list from_inside remark Skype for business Node 2 AV going out
+access-list from_inside extended permit object-group DM_INLINE_SERVICE_5 host SKYPE02-AV-Outside-Pri any 
+access-list from_inside extended permit tcp host SKYPE_NEW any 
+access-list from_dmz1 extended permit tcp object-group it_mgmt_nets object-group portal_managed_devices object-group tcp_mgmt 
+access-list from_dmz1 extended permit icmp object-group it_mgmt_nets object-group portal_managed_devices object-group icmp_diags 
+access-list from_dmz1 extended permit icmp object-group it_mgmt_nets object-group portal_managed_devices object-group ping_reply 
+access-list from_dmz1 extended permit ip host MNK-PORTAL-ASA1-DMZ host 10.242.151.72 
+access-list from_dmz1 remark Allow outbound internet access
+access-list from_dmz1 extended permit tcp host SecurEnvoy-Inside any eq www 
+access-list from_dmz1 remark Allow Outbound HTTPS
+access-list from_dmz1 extended permit tcp host SecurEnvoy-Inside any eq https 
+access-list from_dmz1 remark Allow NHSL Outbound to Kirona VPN
+access-list from_dmz1 extended permit tcp any VPN-KironaEnd 255.255.255.0 object-group DM_INLINE_TCP_1 
+access-list from_dmz1 remark Allow NHSL Outbound ICMP to Kirona
+access-list from_dmz1 extended permit icmp any VPN-KironaEnd 255.255.255.0 object-group DM_INLINE_ICMP_1 
+access-list nonat_src extended permit ip host MNK-PORTAL-CAT2 object-group it_mgmt_nets 
+access-list in-wireless-guests remark . allow access to DHCP
+access-list in-wireless-guests remark . allow access to DHCP
+access-list in-wireless-guests remark . allow access to External DNS
+access-list in-wireless-guests extended permit udp 192.169.240.0 255.255.240.0 any range bootps bootpc 
+access-list in-wireless-guests remark . allow access to External DNS
+access-list in-wireless-guests remark . allow access to External DNS at Virgin Media
+access-list in-wireless-guests extended permit udp 192.169.240.0 255.255.240.0 host 158.152.1.58 eq domain 
+access-list in-wireless-guests extended permit udp 192.169.240.0 255.255.240.0 host 158.152.1.43 eq domain 
+access-list in-wireless-guests remark . allow access to DNS on Virgin Media Router
+access-list in-wireless-guests remark . allow access to External DNS at Google
+access-list in-wireless-guests remark . allow access to External DNS at Virgin Media
+access-list in-wireless-guests extended permit udp 192.169.240.0 255.255.240.0 host 194.168.4.123 eq domain 
+access-list in-wireless-guests extended permit udp 192.169.240.0 255.255.240.0 host 194.168.8.123 eq domain 
+access-list in-wireless-guests remark . allow access to DNS on Virgin Media Router
+access-list in-wireless-guests remark . allow access to External DNS at Google
+access-list in-wireless-guests extended permit udp 192.169.240.0 255.255.240.0 host 8.8.8.8 eq domain 
+access-list in-wireless-guests remark . end of allow access to External DNS at Google
+access-list in-wireless-guests remark . Virgin router has static hosts for IPs on outside NIC for SRA and Airwatch
+access-list in-wireless-guests extended permit udp 192.169.240.0 255.255.240.0 host MNK-PORTAL-RTR1-PUB eq domain 
+access-list in-wireless-guests remark . permit access to Airwatch
+access-list in-wireless-guests extended permit tcp 192.169.240.0 255.255.240.0 host MDM-NHSL-LANARKSHIRE-SCOT-NHS-UK-PRI eq https 
+access-list in-wireless-guests remark . permit access to connect.nhslanarkshire.com for corporate email
+access-list in-wireless-guests extended permit tcp 192.169.240.0 255.255.240.0 host MNK-PORTAL-FP1-OUTSIDE eq https 
+access-list in-wireless-guests remark . deny access to internal private subnets
+access-list in-wireless-guests extended deny ip 192.169.240.0 255.255.240.0 10.0.0.0 255.0.0.0 
+access-list in-wireless-guests extended deny ip 192.169.240.0 255.255.240.0 host 1.1.1.1 
+access-list in-wireless-guests extended deny ip 192.169.240.0 255.255.240.0 172.16.0.0 255.240.0.0 
+access-list in-wireless-guests extended deny ip 192.169.240.0 255.255.240.0 192.168.0.0 255.255.0.0 
+access-list in-wireless-guests remark . allow SLC Direct Access VPN slcdas.southlanarkshire.gov.uk
+access-list in-wireless-guests extended permit tcp 192.169.240.0 255.255.240.0 host 212.219.209.250 eq https 
+access-list in-wireless-guests extended permit 41 192.169.240.0 255.255.240.0 host 212.219.209.250 
+access-list in-wireless-guests extended permit udp 192.169.240.0 255.255.240.0 host 212.219.209.250 eq 3544 
+access-list in-wireless-guests extended permit ip 192.169.240.0 255.255.240.0 host 212.219.209.250 
+access-list in-wireless-guests remark . end of allow SLC Direct Access VPN slcdas.southlanarkshire.gov.uk
+access-list in-wireless-guests remark . allow access to external web and vpn services
+access-list in-wireless-guests extended permit tcp 192.169.240.0 255.255.240.0 any eq www 
+access-list in-wireless-guests extended permit tcp 192.169.240.0 255.255.240.0 any eq https 
+access-list in-wireless-guests extended permit icmp 192.169.240.0 255.255.240.0 any unreachable 
+access-list in-wireless-guests extended permit tcp 192.169.240.0 255.255.240.0 any eq 8080 
+access-list in-wireless-guests remark . allow Barracuda TCP 22 for Tech Support, SMTP email, NTP
+access-list in-wireless-guests extended permit tcp host 192.169.240.4 any eq ssh 
+access-list in-wireless-guests extended permit tcp host 192.169.240.4 any eq smtp 
+access-list in-wireless-guests extended permit udp host 192.169.240.4 any eq ntp 
+access-list in-wireless-guests remark Meraki to iOS
+access-list in-wireless-guests extended permit tcp host 192.169.240.4 17.0.0.0 255.0.0.0 range 2195 2196 
+access-list in-wireless-guests remark Meraki to iOS
+access-list in-wireless-guests extended permit tcp host 192.169.240.4 17.0.0.0 255.0.0.0 eq 5223 
+access-list in-wireless-guests remark Meraki to Cloud portal
+access-list in-wireless-guests extended permit udp host 192.169.240.4 host 54.193.207.248 
+access-list in-wireless-guests remark Meraki to Cloud portal
+access-list in-wireless-guests extended permit udp host 192.169.240.4 host 64.62.142.12 
+access-list in-wireless-guests remark Meraki to Cloud portal
+access-list in-wireless-guests extended permit udp host 192.169.240.4 108.161.147.0 255.255.255.0 
+access-list in-wireless-guests remark Meraki to Cloud portal
+access-list in-wireless-guests extended permit udp host 192.169.240.4 199.231.78.0 255.255.255.0 
+access-list in-wireless-guests remark Meraki to Cloud
+access-list in-wireless-guests extended permit udp host 192.169.240.4 host 64.62.142.12 eq 9350 
+access-list in-wireless-guests remark Meraki to Cloud
+access-list in-wireless-guests extended permit udp host 192.169.240.4 199.231.78.0 255.255.255.0 eq 9350 
+access-list in-wireless-guests remark Meraki to Cloud
+access-list in-wireless-guests extended permit udp host 192.169.240.4 108.161.147.0 255.255.255.0 eq 9350 
+access-list in-wireless-guests remark Meraki to Cloud
+access-list in-wireless-guests extended permit udp host 192.169.240.4 host 64.156.192.245 eq 9350 
+access-list in-wireless-guests remark Meraki To Google DNS
+access-list in-wireless-guests extended permit udp host 192.169.240.4 host 8.8.8.8 eq domain 
+access-list in-wireless-guests remark Meraki To Google DNS
+access-list in-wireless-guests extended permit udp host 192.169.240.4 host 8.8.4.4 eq domain 
+access-list in-wireless-guests remark . allow access to Secdata for testing outbound access
+access-list in-wireless-guests extended permit tcp 192.169.240.0 255.255.240.0 host 87.238.207.100 eq ssh 
+access-list in-wireless-guests extended permit tcp 192.169.240.0 255.255.240.0 any eq 5228 
+access-list in-wireless-guests extended permit tcp 192.169.240.0 255.255.240.0 host 87.238.207.100 eq 65535 
+access-list in-wireless-guests remark . allow outbound access for Cisco DX Series video conf devices
+access-list in-wireless-guests extended permit tcp 192.169.240.0 255.255.240.0 host 194.159.159.12 range 1024 65535 
+access-list in-wireless-guests extended permit udp 192.169.240.0 255.255.240.0 host 194.159.159.12 range 1024 65535 
+access-list in-wireless-guests remark . end of allow outbound access for Cisco DX Series video conf devices
+access-list in-wireless-guests remark . allow Porters Guest WiFi at Wishaw General access to Apple APNs
+access-list in-wireless-guests extended permit tcp 192.169.240.0 255.255.240.0 17.0.0.0 255.0.0.0 eq 5223 
+access-list in-wireless-guests extended permit tcp 192.169.240.0 255.255.240.0 17.0.0.0 255.0.0.0 eq 2195 
+access-list in-wireless-guests extended permit tcp 192.169.240.0 255.255.240.0 17.0.0.0 255.0.0.0 eq 2196 
+access-list in-wireless-guests remark . end of allow Porters Guest WiFi at Wishaw General access to Apple APNs
+access-list in-wireless-guests remark . allow Graham Construction VPN Traffic
+access-list in-wireless-guests extended permit udp 192.169.240.0 255.255.240.0 host 81.105.173.250 eq isakmp 
+access-list in-wireless-guests extended permit udp 192.169.240.0 255.255.240.0 host 81.105.173.250 eq 4500 
+access-list in-wireless-guests remark . end of allow Graham Construction VPN Traffic
+access-list in-wireless-guests extended deny ip any any 
+access-list netflow-export extended permit ip any any 
+access-list outside_cryptomap extended permit object-group DM_INLINE_SERVICE_1 object-group Kirona-VPN-NHSLSide VPN-KironaEnd 255.255.255.0 
+access-list dmz1_nat_outbound extended permit ip any VPN-KironaEnd 255.255.255.0 
+access-list dmz1_nat0_outbound extended permit ip object-group Kirona-VPN-NHSLSide VPN-KironaEnd 255.255.255.0 
+pager lines 24
+logging enable
+logging timestamp
+logging monitor notifications
+logging buffered critical
+logging trap warnings
+logging history alerts
+logging asdm informational
+logging from-address MNK-PORTAL-ASA1@lanarkshire.scot.nhs.uk
+logging recipient-address itsecurity@lanarkshire.scot.nhs.uk level alerts
+logging host dmz1 10.242.189.31
+logging host dmz1 10.250.168.100
+flow-export destination dmz1 10.242.182.9 2055
+flow-export template timeout-rate 1
+flow-export delay flow-create 60
+mtu outside 1500
+mtu inside 1500
+mtu wireless-guest 1500
+mtu dmz1 1500
+ip verify reverse-path interface outside
+ip verify reverse-path interface inside
+ip audit name Drop_Attacks attack action alarm drop
+ip audit interface outside Drop_Attacks
+failover
+failover lan unit primary
+failover lan interface STATE Ethernet0/2
+failover key gammad236651c
+failover link STATE Ethernet0/2
+failover interface ip STATE 10.242.151.101 255.255.255.252 standby 10.242.151.102
+no monitor-interface wireless-guest
+no monitor-interface dmz1
+icmp unreachable rate-limit 1 burst-size 1
+icmp deny any outside
+icmp permit host MNK-PORTAL-FP1-OUTSIDE inside
+icmp permit host 10.242.151.36 inside
+icmp permit host 10.242.151.37 inside
+icmp permit host VirtualWeb-REMOTE.NHSLANARKSHIRE.COM inside
+icmp permit host VirtualWeb-ACTIVESYNC.NHSLANARKSHIRE.COM inside
+icmp permit host MNK-PORTAL-APM-PRIMARY-OUTSIDE inside
+icmp permit host MNK-PORTAL-APM-SECONDARY-OUTSIDE inside
+icmp deny any inside
+icmp deny 192.169.240.0 255.255.240.0 wireless-guest
+asdm image disk0:/asdm-621.bin
+asdm location NTP.DEMON.CO.UK 255.255.255.255 outside
+asdm location it_support 255.255.255.224 inside
+asdm location F5GPSRA-Outside 255.255.255.255 inside
+asdm location F5-GPSRA-Outside-EXT 255.255.255.255 inside
+asdm location SecurEnvoy-Inside 255.255.255.255 inside
+asdm location SecurEnvoy-Outside 255.255.255.255 inside
+asdm location VPN-KironaEnd 255.255.255.0 inside
+asdm location VSV-363 255.255.255.255 inside
+asdm location VSV-364 255.255.255.255 inside
+asdm location VSV-365 255.255.255.255 inside
+asdm location SKYPE01-Access-Outside-Pri 255.255.255.255 inside
+asdm location SKYPE01-WEB-Outside-Pri 255.255.255.255 inside
+asdm location SKYPE01-AV-Outside-Pri 255.255.255.255 inside
+asdm location SKYPE01-ReverseProxy-Outside-Pri 255.255.255.255 inside
+asdm location SKYPE02-Access-Outside-Pri 255.255.255.255 inside
+asdm location SKYPE02-Web-Outside-Pri 255.255.255.255 inside
+asdm location SKYPE02-AV-Outside-Pri 255.255.255.255 inside
+asdm location SKYPE01-Access-Outside-EXT 255.255.255.255 inside
+asdm location SKYPE01-WEB-Outside-EXT 255.255.255.255 inside
+asdm location SKYPE01-AV-Outside-EXT 255.255.255.255 inside
+asdm location SKYPE02-Access-Outside-EXT 255.255.255.255 inside
+asdm location SKYPE02-WEB-Outside-EXT 255.255.255.255 inside
+asdm location SKYPE02-AV-Outside-EXT 255.255.255.255 inside
+asdm location SKYPE01-ReverseProxy-Outside-EXT 255.255.255.255 inside
+asdm location Skype02-ReverseProxy-Outside-EXT 255.255.255.255 inside
+asdm location SKYPE02-ReverseProxy-Outside-Pri 255.255.255.255 inside
+asdm group it_mgmt_nets dmz1
+asdm group syslog_server dmz1
+asdm group public_side_man_dev_real outside
+asdm group public_side_man_dev dmz1 reference public_side_man_dev_real
+no asdm history enable
+arp timeout 14400
+global (outside) 10 SecurEnvoy-Outside netmask 255.0.0.0
+global (outside) 5 VSV-363 netmask 255.255.255.255
+nat (inside) 0 access-list nonat_src
+nat (wireless-guest) 10 192.169.240.0 255.255.240.0 tcp 0 100 
+nat (dmz1) 0 access-list dmz1_nat0_outbound
+nat (dmz1) 10 access-list nat_hide_src
+nat (dmz1) 5 access-list dmz1_nat_outbound
+nat (dmz1) 10 SecurEnvoy-Inside 255.255.255.255
+static (inside,outside) tcp SecurEnvoy-Outside https 10.242.151.58 https netmask 255.255.255.255 
+static (outside,dmz1) MNK-PORTAL-CAT1-NAT CWD-MNK-PORTAL-CAT1-PUB netmask 255.255.255.255 
+static (outside,wireless-guest) 158.152.1.58 158.152.1.58 netmask 255.255.255.255 tcp 0 100 
+static (outside,wireless-guest) 158.152.1.43 158.152.1.43 netmask 255.255.255.255 tcp 0 100 
+static (outside,wireless-guest) 194.168.4.123 194.168.4.123 netmask 255.255.255.255 tcp 0 100 
+static (outside,wireless-guest) 194.168.8.123 194.168.8.123 netmask 255.255.255.255 tcp 0 100 
+static (outside,dmz1) MNK-PORTAL-RTR1-NAT MNK-PORTAL-RTR1-PUB netmask 255.255.255.255 
+static (inside,outside) CONNECT.NHSLANARKSHIRE.COM MNK-PORTAL-FP1-OUTSIDE netmask 255.255.255.255 
+static (inside,outside) MDM-NHSL-LANARKSHIRE-SCOT-NHS-UK MDM-NHSL-LANARKSHIRE-SCOT-NHS-UK-PRI netmask 255.255.255.255 
+static (inside,outside) MDM-MAG-LANARKSHIRE-SCOT-NHS-UK MDM-MAG-LANARKSHIRE-SCOT-NHS-UK-PRI netmask 255.255.255.255 
+static (inside,outside) REMOTE.NHSLANARKSHIRE.COM VirtualWeb-REMOTE.NHSLANARKSHIRE.COM netmask 255.255.255.255 
+static (inside,outside) ACTIVESYNC.NHSLANARKSHIRE.COM VirtualWeb-ACTIVESYNC.NHSLANARKSHIRE.COM netmask 255.255.255.255 
+static (inside,outside) SCOPIA.NHSL.LANARKSHIRE.SCOT.NHS.UK SCOPIA.NHSL.LANARKSHIRE.SCOT.NHS.UK.PRIVATE netmask 255.255.255.255 
+static (inside,outside) VIDEO.NHSL.LANARKSHIRE.SCOT.NHS.UK VIDEO.NHSL.LANARKSHIRE.SCOT.NHS.UK.PRIVATE netmask 255.255.255.255 
+static (inside,outside) EDUROAM.NHSL.LANARKSHIRE.SCOT.NHS.UK EDUROAM.NHSL.LANARKSHIRE.SCOT.NHS.UK.PRIVATE netmask 255.255.255.255 
+static (inside,outside) F5-GPSRA-Outside-EXT F5GPSRA-Outside netmask 255.255.255.255 
+static (inside,outside) SKYPE01-Access-Outside-EXT SKYPE01-Access-Outside-Pri netmask 255.255.255.255 
+static (inside,outside) SKYPE01-WEB-Outside-EXT SKYPE01-WEB-Outside-Pri netmask 255.255.255.255 
+static (inside,outside) SKYPE01-AV-Outside-EXT SKYPE01-AV-Outside-Pri netmask 255.255.255.255 
+static (inside,outside) SKYPE02-Access-Outside-EXT SKYPE02-Access-Outside-Pri netmask 255.255.255.255 
+static (inside,outside) SKYPE02-WEB-Outside-EXT SKYPE02-Web-Outside-Pri netmask 255.255.255.255 
+static (inside,outside) SKYPE02-AV-Outside-EXT SKYPE02-AV-Outside-Pri netmask 255.255.255.255 
+static (inside,outside) SKYPE01-ReverseProxy-Outside-EXT SKYPE01-ReverseProxy-Outside-Pri netmask 255.255.255.255 
+static (inside,outside) Skype02-ReverseProxy-Outside-EXT SKYPE02-ReverseProxy-Outside-Pri netmask 255.255.255.255 
+static (inside,outside) SMSCOMMS.NHSL.LANARKSHIRE.SCOT.NHS.UK SMSCOMMS.NHSL.LANARKSHIRE.SCOT.NHS.UK.PRIVATE netmask 255.255.255.255 
+static (inside,outside) nhsl-adfs.NHSL.LANARKSHIRE.SCOT.NHS.UK nhsl-adfs.NHSL.LANARKSHIRE.SCOT.NHS.UK.PRIVATE netmask 255.255.255.255 
+static (inside,outside) SKYPE_NEW SKYPE_NEW.PRIVATE netmask 255.255.255.255 
+access-group from_outside in interface outside
+access-group from_inside in interface inside
+access-group in-wireless-guests in interface wireless-guest
+access-group from_dmz1 in interface dmz1
+route outside 0.0.0.0 0.0.0.0 MNK-PORTAL-RTR1-PUB 10
+route dmz1 10.21.0.0 255.255.0.0 MNK-PORTAL-PIX2-DMZ 1
+route dmz1 WLAN-MNK 255.255.0.0 MNK-PORTAL-PIX2-DMZ 2
+route dmz1 WLAN-HM 255.255.0.0 MNK-PORTAL-PIX2-DMZ 2
+route dmz1 10.242.0.0 255.255.0.0 MNK-PORTAL-PIX2-DMZ 3
+route dmz1 10.250.0.0 255.255.0.0 MNK-PORTAL-PIX2-DMZ 2
+route dmz1 SecurEnvoy-Inside 255.255.255.255 MNK-PORTAL-PIX2-DMZ 1
+timeout xlate 3:00:00
+timeout conn 1:00:00 half-closed 0:10:00 udp 0:02:00 icmp 0:00:02
+timeout sunrpc 0:10:00 h323 0:05:00 h225 1:00:00 mgcp 0:05:00 mgcp-pat 0:05:00
+timeout sip 0:30:00 sip_media 0:02:00 sip-invite 0:03:00 sip-disconnect 0:02:00
+timeout sip-provisional-media 0:02:00 uauth 0:05:00 absolute
+timeout tcp-proxy-reassembly 0:01:00
+dynamic-access-policy-record DfltAccessPolicy
+aaa authentication enable console LOCAL 
+aaa authentication http console LOCAL 
+aaa authentication serial console LOCAL 
+aaa authentication ssh console LOCAL 
+aaa authentication telnet console LOCAL 
+http server enable
+http 10.242.0.0 255.255.0.0 dmz1
+http 10.21.0.0 255.255.0.0 dmz1
+http 10.242.147.237 255.255.255.255 dmz1
+http 10.242.147.137 255.255.255.255 dmz1
+http 10.9.96.0 255.255.240.0 dmz1
+http 10.41.96.0 255.255.240.0 dmz1
+http it_support 255.255.255.224 dmz1
+http 10.242.224.0 255.255.255.0 dmz1
+http 10.242.147.212 255.255.255.255 dmz1
+http 10.29.8.0 255.255.255.0 dmz1
+http 10.29.9.0 255.255.255.0 dmz1
+http 10.21.7.0 255.255.255.0 dmz1
+http 10.21.3.0 255.255.255.0 dmz1
+http 10.242.189.0 255.255.255.0 dmz1
+http 10.242.170.0 255.255.255.0 dmz1
+http 10.242.147.0 255.255.255.0 dmz1
+http 10.242.192.0 255.255.255.0 dmz1
+http 10.242.168.0 255.255.255.0 dmz1
+http 10.242.228.0 255.255.255.0 dmz1
+snmp-server group Authentication_Only v3 auth 
+snmp-server host dmz1 10.242.182.9 community cs02lhb57
+no snmp-server location
+no snmp-server contact
+snmp-server community cs02lhb57
+snmp-server enable traps snmp authentication linkup linkdown coldstart
+service resetoutside
+crypto ipsec transform-set ESP-AES-256-MD5 esp-aes-256 esp-md5-hmac 
+crypto ipsec transform-set ESP-DES-SHA esp-des esp-sha-hmac 
+crypto ipsec transform-set ESP-DES-MD5 esp-des esp-md5-hmac 
+crypto ipsec transform-set ESP-AES-192-MD5 esp-aes-192 esp-md5-hmac 
+crypto ipsec transform-set ESP-3DES-MD5 esp-3des esp-md5-hmac 
+crypto ipsec transform-set ESP-AES-128-SHA esp-aes esp-sha-hmac 
+crypto ipsec transform-set ESP-AES-192-SHA esp-aes-192 esp-sha-hmac 
+crypto ipsec transform-set ESP-AES-128-MD5 esp-aes esp-md5-hmac 
+crypto ipsec transform-set ESP-AES-256-SHA esp-aes-256 esp-sha-hmac 
+crypto ipsec transform-set ESP-3DES-SHA esp-3des esp-sha-hmac 
+crypto ipsec security-association lifetime seconds 28800
+crypto ipsec security-association lifetime kilobytes 4608000
+crypto map outside_map0 1 match address outside_cryptomap
+crypto map outside_map0 1 set peer 79.174.169.180 
+crypto map outside_map0 1 set transform-set ESP-3DES-SHA
+crypto map outside_map0 interface outside
+crypto isakmp identity address 
+crypto isakmp enable outside
+crypto isakmp policy 3
+ authentication pre-share
+ encryption 3des
+ hash sha
+ group 2
+ lifetime 28800
+telnet timeout 10
+ssh 10.21.0.0 255.255.0.0 dmz1
+ssh 10.242.206.0 255.255.255.0 dmz1
+ssh 10.13.20.0 255.255.255.0 dmz1
+ssh 10.242.224.0 255.255.255.0 dmz1
+ssh 10.242.228.0 255.255.255.0 dmz1
+ssh 10.29.9.0 255.255.255.0 dmz1
+ssh 10.242.147.237 255.255.255.255 dmz1
+ssh 10.242.147.137 255.255.255.255 dmz1
+ssh 10.9.96.0 255.255.240.0 dmz1
+ssh 10.41.96.0 255.255.240.0 dmz1
+ssh it_support 255.255.255.224 dmz1
+ssh 10.242.147.212 255.255.255.255 dmz1
+ssh 10.29.8.0 255.255.255.0 dmz1
+ssh 10.21.7.0 255.255.255.0 dmz1
+ssh 10.21.3.0 255.255.255.0 dmz1
+ssh 10.242.189.0 255.255.255.0 dmz1
+ssh 10.242.170.0 255.255.255.0 dmz1
+ssh 10.242.147.0 255.255.255.0 dmz1
+ssh 10.242.192.0 255.255.255.0 dmz1
+ssh 10.242.168.0 255.255.255.0 dmz1
+ssh 10.242.128.0 255.255.224.0 dmz1
+ssh 10.242.248.0 255.255.255.0 dmz1
+ssh 10.242.228.0 255.255.254.0 dmz1
+ssh 10.242.230.0 255.255.254.0 dmz1
+ssh 10.242.226.0 255.255.254.0 dmz1
+ssh timeout 10
+console timeout 10
+threat-detection basic-threat
+threat-detection statistics port
+threat-detection statistics protocol
+threat-detection statistics access-list
+threat-detection statistics tcp-intercept rate-interval 30 burst-rate 400 average-rate 200
+ntp server 216.239.35.0 source outside prefer
+tftp-server dmz1 10.21.3.22 /
+webvpn
+group-policy DfltGrpPolicy attributes
+username admin password 1XD/qcCeow9V/UMT encrypted privilege 15
+username comms password U90l/Akic9WirZJV encrypted privilege 15
+tunnel-group 79.174.169.180 type ipsec-l2l
+tunnel-group 79.174.169.180 ipsec-attributes
+ pre-shared-key s3UbprevErsNEu3r0oeE
+!
+class-map netflow-export-class
+ match access-list netflow-export
+class-map inspection_default
+ match default-inspection-traffic
+!
+!
+policy-map global_policy
+ class inspection_default
+  inspect ftp 
+  inspect h323 h225 
+  inspect h323 ras 
+  inspect netbios 
+  inspect rsh 
+  inspect rtsp 
+  inspect skinny  
+  inspect esmtp 
+  inspect sqlnet 
+  inspect sunrpc 
+  inspect tftp 
+  inspect sip  
+  inspect xdmcp 
+  inspect http 
+  inspect icmp error 
+  inspect icmp 
+  inspect dns 
+ class netflow-export-class
+  flow-export event-type all destination 10.242.182.9
+  flow-export event-type flow-create destination 10.242.182.9
+  flow-export event-type flow-denied destination 10.242.182.9
+  flow-export event-type flow-teardown destination 10.242.182.9
+ class class-default
+  flow-export event-type all destination 10.242.182.9
+policy-map flow_export_policy
+!
+service-policy global_policy global
+smtp-server 10.242.170.21 10.242.170.22
+prompt hostname context 
+Cryptochecksum:52d84b29da3c8648893604298135c747
+: end
