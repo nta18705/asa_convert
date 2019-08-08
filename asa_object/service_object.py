@@ -11,16 +11,82 @@ class Service:
 #   service-object tcp eq http
 #   service-object udp range 40000-50000
 
+    ASA_PORT_MAP = {
+            'aol': '5120',
+            'bgp': '179',
+            'chargen': '19',
+            'cifs': '3020',
+            'citrix-ica': '1494',
+            'cmd': '514',
+            'ctiqbe': '2748',
+            'daytime': '13',
+            'discard': '9',
+            'domain': '53',
+            'echo': '7',
+            'exec': '512',
+            'finger': '79',
+            'ftp': '21',
+            'ftp-data': '20',
+            'gopher': '70',
+            'h323': '1720',
+            'hostname': '101',
+            'http': '80',
+            'https': '443',
+            'ident': '113',
+            'imap4': '143',
+            'irc': '194',
+            'kerberos': '88',
+            'klogin': '543',
+            'kshell': '544',
+            'ldap': '389',
+            'ldaps': '636',
+            'login': '513',
+            'lotusnotes': '1352',
+            'lpd': '515',
+            'netbios-ssn': '139',
+            'nfs': '2049',
+            'nntp': '119',
+            'pcanywhere-data': '5631',
+            'pim-auto-rp': '496',
+            'pop2': '109',
+            'pop3': '110',
+            'pptp': '1723',
+            'rsh': '514',
+            'rtsp': '554',
+            'sip': ' 5060',
+            'smtp': '25',
+            'sqlnet': '1522',
+            'ssh': '22',
+            'sunrpc': '111',
+            'tacacs': '49',
+            'talk': '517',
+            'telnet': '23',
+            'uucp': '540',
+            'whois': '43',
+            'www': '80'
+        }
+
     def __init__(self, line):
         tokens = line.split(' ')
+        self.proto = None
         self.name = tokens[2]
         if len(tokens) > 3:
             self.proto = tokens[3]
         self.description = None
         self.internal_objects = []
+
+    def test_numeral(self, string):
+        try:
+            int(str(string))
+            return True
+        except ValueError:
+            return False
     
     def add_port_object(self, port):
-        port_object = Port_Object(port)
+        if self.test_numeral(port):
+            port_object = Port_Object(port)
+        else:
+            port_object = Port_Object(self.ASA_PORT_MAP[str(port)])
         self.internal_objects.append(port_object)
 
     def add_range_object(self, proto, start_port, end_port):
@@ -33,7 +99,10 @@ class Service:
         self.internal_objects.append(group)
 
     def add_service_child(self, proto, port):
-        service_child = Service_Child(proto, port)
+        if self.test_numeral(port) or proto == 'icmp':
+            service_child = Service_Child(proto, port)
+        else:
+            service_child = Service_Child(proto, self.ASA_PORT_MAP[str(port)])  
         self.internal_objects.append(service_child)
     
     def add_child(self, line):
@@ -48,7 +117,7 @@ class Service:
         elif tokens[1] == 'service-object' and tokens[3] == 'range':
             self.add_range_object(tokens[2], tokens[4], tokens[5])
         elif tokens[2] == 'ip':
-            self.add_service_child('ip', None)
+            print('[E] IP not supported in port or service groups')
         elif tokens[2] =='icmp':
             self.add_service_child(tokens[2], tokens[3])
         elif tokens[1] == 'service-object':
@@ -69,6 +138,7 @@ class Service:
             'Type':         'service-group',
             'Name':         self.name,
             'Description':  self.description,
+            'Protocol':     self.proto,
             'Children':     children
         }
 
