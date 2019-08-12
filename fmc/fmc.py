@@ -115,7 +115,7 @@ class FMC:
         try:
             # Entertainingly, the API seems to default to only returing 25 items by default (this is not documented)
             # So - we pass a parameter into the URL saying that we want 65535 entries back (limit=65535)
-            object_types = {'hosts', 'fqdns', 'networkgroups', 'ranges', 'networks'}
+            object_types = {'hosts', 'fqdns', 'networkgroups', 'ranges', 'networks', 'portobjectgroups', 'protocolportobjects'}
             for object_type in object_types:
                 response_data = self.get(object_type)
                 if response_data is not None:

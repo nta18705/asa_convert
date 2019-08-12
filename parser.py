@@ -56,24 +56,27 @@ def parse_objects():
 def create_object(fmc, entry, obj_type):
     if obj_type == 'networkgroups':
         return(NetworkGroup(entry, fmc).obj)
-    if obj_type == 'portobjectgroups':
+    if obj_type == 'portobjectgroups' or 'icmp':
         return(PortGroup(entry, fmc).obj)
 
 def insert_objects(fmc, objects):
 # It might be better to iterate through objects and post them individually rather than in bulk so that individual failures don't
 # cause the whole operation to fail
-
-# For network groups - do we need to create the relevant networks first?
-    object_types = ['hosts', 'networkgroups', 'portobjectgroups']
+    object_types = {
+        'icmp':             'portobjectgroups',
+        'hosts':            'hosts',
+        'networkgroups':    'networkgroups',
+        'portobjectgroups': 'portobjectgroups'
+    }
     for obj_type in object_types:
         print('[D] working on ', obj_type)
         data = objects[obj_type]
         for entry in data:
             if obj_type == 'hosts':
-                fmc.post(json.dumps(entry), obj_type)
+                fmc.post(json.dumps(entry), object_types[obj_type])
             else:
                 post_data = create_object(fmc, entry, obj_type)
-                fmc.post(json.dumps(post_data), obj_type)
+                fmc.post(json.dumps(post_data), object_types[obj_type])
             
     
 

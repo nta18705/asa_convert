@@ -117,7 +117,7 @@ class Service:
         elif tokens[1] == 'service-object' and tokens[3] == 'range':
             self.add_range_object(tokens[2], tokens[4], tokens[5])
         elif tokens[2] == 'ip':
-            print('[E] IP not supported in port or service groups')
+            print('[E] Object group ' + self.name + ' IP not supported in port or service groups')
         elif tokens[2] =='icmp':
             self.add_service_child(tokens[2], tokens[3])
         elif tokens[1] == 'service-object':

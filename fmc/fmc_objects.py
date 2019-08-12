@@ -1,5 +1,15 @@
 from pprint import pprint
 import ipaddress
+import json
+
+ICMP_TYPE = {
+    'echo-reply':       0,
+    'unreachable':      3,
+    'redirect':         5,
+    'echo':             8,
+    'time-exceeded':    11,
+    'traceroute':       30
+}
 
 def is_ip_addr(ip, mask):
     try:
@@ -85,15 +95,17 @@ class PortGroup:
         self.objects = []
         self.fmc = fmc
         for child in data['Children']:
-            if child['Type'] == 'port-object':
+            if child['Type'] == 'icmp-object':
+                obj_id = self.create_icmp_object(data['Name'], child['Protocol'])
+            elif child['Type'] == 'port-object':
                 obj_id = self.create_port_object(data['Name'], data['Protocol'], child['Port'])
             elif child['Type'] == 'service-object':
                 obj_id = self.create_port_object(data['Name'], child['Protocol'], child['Port'])
             elif child['Type'] == 'range-object':
                 port = child['Start'] + '-' + child['End']
                 obj_id = self.create_port_object(data['Name'], child['Protocol'], port)
-            elif child['Type'] == 'group-object':
-                print('[E] nested objects not yet implemented!')
+            elif child['Type'] == 'group-object' or child['Type'] == 'icmp-group-object':
+                obj_id = self.fmc.get_obj_id(child['Name'], 'portobjectgroups')
             object_data = {
                 'type': 'ProtocolPortObject',
                 'id':   obj_id
@@ -118,21 +130,31 @@ class PortGroup:
             except ValueError:
                 return port
 
-
     def create_port_object(self, name, protocol, port):
         obj_port = self.convert_to_int(port)
         post_data = {
             'name':     str(name) + '_' + str(protocol) + '_' + str(port),
             'port':     obj_port,
             'protocol': protocol.upper(),
-            'type':     'ProtocolPortObject',
+            'type':     'ProtocolPortObject'
         }
-        ident = self.fmc.post(post_data, 'protocolportobjects')
-        print('[D] Created a new PortProtocol object with ID ', ident)
+        print('[D] Creating a new PortProtocol object:')
         pprint(post_data)
+        ident = self.fmc.post(json.dumps(post_data), 'protocolportobjects')
+        if ident == None:
+            ident = self.fmc.get_obj_id(post_data['name'], 'protocolportobjects')
         return ident
 
-class ICMPGroup(PortGroup):
 
-    def __init__(self, data, fmc):
-        print('Not yet implemented')
+    def create_icmp_object(self, name, icmp_type):
+        post_data = {
+            'name':     str(name) + '_ICMP_' + str(icmp_type),
+            'icmpType': ICMP_TYPE[icmp_type],
+            'type':     'ICMPV4Object'
+        }
+        print('[D] Creating a new ICMPV4 Object:')
+        pprint(post_data)
+        ident = self.fmc.post(json.dumps(post_data), 'icmpv4objects')
+        if ident == None:
+            ident = self.fmc.get_obj_id(post_data['name'], 'icmpv4objects')
+        return ident
