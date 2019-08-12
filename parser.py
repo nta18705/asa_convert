@@ -86,7 +86,7 @@ def main():
     fmc_url = 'https://' + fmc_url
     fmc = FMC(fmc_url)
     fmc.connect()
-    fmc.delete_objects()
+    #fmc.delete_objects()
     insert_objects(fmc, objects)
     
 

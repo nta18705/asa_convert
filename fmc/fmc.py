@@ -131,6 +131,7 @@ class FMC:
             if r: r.close()
     
     def get_obj_id(self, value, obj_type):
+        # Returns an object id for a specific object
         data = self.get(obj_type)
         print('[D] Checking for ' + value + ' in:')
         pprint(data)

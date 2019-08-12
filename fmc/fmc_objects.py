@@ -63,10 +63,7 @@ class NetworkGroup():
                     print('[D] Created a new subnet literal: ', literal_data)
                     self.literals.append(literal_data)
                 else:
-                    if child['Mask'] == '255.255.255.255':
-                        obj_id = fmc.get_obj_id(child['Subnet'], 'hosts')
-                    else:
-                        obj_id = fmc.get_obj_id(child['Subnet'], 'subnets')
+                    obj_id = fmc.get_obj_id(child['Subnet'], 'hosts')
                     if obj_id is not None:
                         obj_data = {
                             'type': 'Network',
@@ -74,8 +71,16 @@ class NetworkGroup():
                         }
                         self.objects.append(obj_data)
                     else:
-                        print('[E] Predefined object identified but can\'t be found on FMC!')
-                        return None
+                        obj_id = fmc.get_obj_id(child['Subnet'], 'subnets')
+                        if obj_id is not None:
+                            obj_data = {
+                                'type': 'Network',
+                                'id':   obj_id
+                            }
+                            self.objects.append(obj_data)
+                        else:
+                            print('[E] Predefined object identified but can\'t be found on FMC!')
+                            return None
         self.obj = {
             'name':         data['Name'],
             'description':  data['Description'],
