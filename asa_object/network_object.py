@@ -6,7 +6,7 @@ class Network:
 
         def __init__(self, line):
                 tokens = line.split(' ')
-                self.name = tokens[2]
+                self.name = 'MNK-PORTAL_' + tokens[2]
                 self.description = 'None'
                 self.internal_objects = []
         

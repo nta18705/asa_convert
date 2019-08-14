@@ -32,9 +32,7 @@ def process_obj(object_list, obj_type):
             obj_list.append(new_obj.to_dict())
     return obj_list
 
-def parse_objects():
-    asa_file = input('[*] Please enter the path to your ASA config file: ')
-    parse = CiscoConfParse(asa_file, syntax='asa')
+def parse_objects(parse):
     names = parse.find_objects(r'^name ')
     name_list = process_obj(names, 'Name')
     
@@ -81,7 +79,9 @@ def insert_objects(fmc, objects):
     
 
 def main():
-    objects = parse_objects()
+    asa_file = input('[*] Please enter the path to your ASA config file: ')
+    parse = CiscoConfParse(asa_file, syntax='asa')
+    objects = parse_objects(parse)
     fmc_url = input('[*] Please enter the FQDN or IP address of the FMC you want to connect to: ')
     fmc_url = 'https://' + fmc_url
     fmc = FMC(fmc_url)

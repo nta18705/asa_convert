@@ -16,10 +16,9 @@ class FMC:
         # Request headers
         headers = {
                 'Content-Type':'application/json',
-                'Accept':'application/json'
+                'accept':'application/json'
                 }
-        data = '{}'
-        token_response = requests.post(url, auth=auth, data=json.dumps(data), headers=headers, verify=False)
+        token_response = requests.post(url, auth=auth, data=None, headers=headers, verify=False)
         if token_response.ok:
             return token_response
         else:
@@ -55,20 +54,24 @@ class FMC:
     #   - FQDNs
     #   - Ports
     #   - Port groups (including ICMP groups)
+    # Access policies and policy rules now supported.
 
         headers = {
                 'Content-Type' : 'application/json',
                 'X-auth-access-token' : self.auth_token,
                 }
         r = None
-        post_url = self.url + '/api/fmc_config/v1/domain/' + self.domain_uuid + '/object/' + obj_type
+        if 'accessrules' in obj_type or obj_type == 'accesspolicies':
+            post_url = self.url + '/api/fmc_config/v1/domain/' + self.domain_uuid + '/policy/' + obj_type
+        else:
+            post_url = self.url + '/api/fmc_config/v1/domain/' + self.domain_uuid + '/object/' + obj_type
         try:
-            r = requests.post(post_url + '?bulk=true', data=data, headers=headers, verify=False)
+            r = requests.post(post_url, data=data, headers=headers, verify=False)
             print('[*] POST Response: ', r.raise_for_status())
             response_data = json.loads(r.text)
             print('[D] Response text: ')
             pprint(response_data)
-            return response_data['items'][0]['id']
+            return response_data['id']
         except requests.exceptions.HTTPError as err:
             print('[*] Error in POST operation: ', str(err))
             pprint(json.loads(r.text))
@@ -88,7 +91,12 @@ class FMC:
         try:
             # Entertainingly, the API seems to default to only returing 25 items by default (this is not documented)
             # So - we pass a parameter into the URL saying that we want 65535 entries back (limit=65535)
-            get_url = self.url + '/api/fmc_config/v1/domain/' + self.domain_uuid + '/object/' + object_type + '?limit=65535'
+            if object_type == 'accesspolicies' or object_type == 'accessrules':
+                get_url = self.url + '/api/fmc_config/v1/domain/' + self.domain_uuid + '/policy/' + object_type + '?limit=65535'
+            elif 'devicerecords' in object_type:
+                get_url = self.url + '/api/fmc_config/v1/domain/' + self.domain_uuid + '/devices/' + object_type + '?limit=65535'
+            else:
+                get_url = self.url + '/api/fmc_config/v1/domain/' + self.domain_uuid + '/object/' + object_type + '?limit=65535'
             print('[*] Gettting data from ', get_url)
             r = requests.get(get_url, headers=headers, verify=False)
             response_data = json.loads(r.content)

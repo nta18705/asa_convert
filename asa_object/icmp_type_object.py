@@ -9,7 +9,7 @@ class ICMP:
 
     def __init__(self, line):
         tokens = line.split(' ')
-        self.name = tokens[2]
+        self.name = 'MNK-PORTAL_' + tokens[2]
         self.internal_objects = []
         self.description = None
     

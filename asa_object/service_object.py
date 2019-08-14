@@ -69,7 +69,7 @@ class Service:
     def __init__(self, line):
         tokens = line.split(' ')
         self.proto = None
-        self.name = tokens[2]
+        self.name = 'MNK-PORTAL_' + tokens[2]
         if len(tokens) > 3:
             self.proto = tokens[3]
         self.description = None
