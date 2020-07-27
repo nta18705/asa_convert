@@ -9,8 +9,9 @@ class ICMP:
 
     def __init__(self, line):
         tokens = line.split(' ')
-        self.name = tokens[2]
+        self.name = 'MNK-PORTAL_' + tokens[2]
         self.internal_objects = []
+        self.description = None
     
     def add_child(self, line):
         tokens = line.split(' ')
@@ -37,10 +38,11 @@ class ICMP:
     # Converts the object-group to a dict
         children = self.get_children()
         return {
-            'Type': 'icmp-group',
-            'Name': self.name,
-            'Types': children
-            }
+            'Type':         'icmp-group',
+            'Name':         self.name,
+            'Description':  self.description,
+            'Children':     children
+        }
 
     def __str__(self):
         string = self.name + ': '
@@ -59,7 +61,7 @@ class ICMP_Object(ICMP):
     def to_dict(self):
         return {
             'Type': 'icmp-object',
-            'ICMP': self.icmp_type
+            'Protocol': self.icmp_type
         }
 
 class ICMP_Group(ICMP):

@@ -3,6 +3,7 @@ class Name:
 # This class represents a name object in the ASA config
 # name objects can be considered as an alias for an IP address that can be used later in the config
 # e.g. name test-name 1.1.1.1
+# Names in ASA are analogous to Hosts in FMC
     
     def __init__(self, line):
         tokens = line.split(' ')
@@ -15,10 +16,10 @@ class Name:
     
     def to_dict(self):
         return {
-            'Type': 'name',
-            'Name': self.name,
-            'Description': self.description,
-            'IP': self.ip
+            'type': 'Host',
+            'name': self.name,
+            'description': self.description,
+            'value': self.ip
         }
 
     def __str__(self):

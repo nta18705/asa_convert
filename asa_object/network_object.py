@@ -6,7 +6,7 @@ class Network:
 
         def __init__(self, line):
                 tokens = line.split(' ')
-                self.name = tokens[2]
+                self.name = 'MNK-PORTAL_' + tokens[2]
                 self.description = 'None'
                 self.internal_objects = []
         
@@ -41,7 +41,7 @@ class Network:
         # Converts the object-group to a dict
                 children = self.get_children()
                 return {
-                        'Type': 'network-group',
+                        'Type': 'NetworkGroup',
                         'Name': self.name,
                         'Description': self.description,
                         'Children': children
@@ -68,7 +68,7 @@ class Host_Object(Network):
         
         def to_dict(self):
                 return {
-                        'Type': 'host-object',
+                        'Type': 'host',
                         'IP':   self.ip
                 }
 
@@ -89,7 +89,7 @@ class Subnet_Object(Network):
         
         def to_dict(self):
                 return {
-                        'Type': 'subnet-object',
+                        'Type': 'subnet',
                         'Subnet': self.ip,
                         'Mask': self.mask
                 }
